@@ -6,8 +6,8 @@ class GUI:
     def __init__(self, root):
         self.root = root
         self.root.title("Advanced Photoshop")
-        self.root.geometry("800x600")
-        self.root.resizable(0, 0)
+        self.root.geometry("1200x800")
+        self.root.resizable(1, 1)
         self.root.config(bg="grey")
         
         self.label = tk.Label(self.root)
@@ -24,6 +24,8 @@ class GUI:
     
     def dodaj_sliku(self):
         slika_path = filedialog.askopenfilename(filetypes=[("Slike", "*.jpg")])
-        if slika_path:
-            self.prikazi_sliku(slika_path)
+    
+    def promeni_kontrast(self,pathSlike):
+        img=Image.open(pathSlike)
+        img
 
