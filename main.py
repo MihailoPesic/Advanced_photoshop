@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageTk, ImageEnhance
 
-def promeni_kontast(slika, vrednost):
+def promeni_kontrast(slika, vrednost):
     ImageEnhance.Contrast(slika).enchance(vrednost)
 
 def promeni_osvetljenje(slika, vrednost):
