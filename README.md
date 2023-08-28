@@ -8,5 +8,6 @@ Simple Python-based image editing tool created collaboratively by Mihailo PeÅ¡iÄ
 4. White balance
 5. Exposure and contrast
 6. Colors and saturations
-7. Image export
+7. Filters(Blur, Black and White...)
+8. Image export
 
