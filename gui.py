@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageTk
+from main import promeni_kontast
 
 class GUI:
     def __init__(self, root):
@@ -24,8 +25,9 @@ class GUI:
     
     def dodaj_sliku(self):
         slika_path = filedialog.askopenfilename(filetypes=[("Slike", "*.jpg")])
-    
-    def promeni_kontrast(self,pathSlike):
-        img=Image.open(pathSlike)
-        img
+        if slika_path:
+            self.prikazi_sliku(slika_path)
 
+    def menjanje_kontrasta(self):
+        
+        promeni_kontast(self.slika_path, self.vrednost)
