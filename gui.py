@@ -79,11 +79,14 @@
 #         promeni_kontrast(self.slika_path, skala)
 #         self.slika.show()
 
+
 import tkinter as tk
 from tkinter import *
 from tkinter import filedialog
 from PIL import Image, ImageTk, ImageEnhance
 
+images_preview=[]
+images=[]
 class GUI:
     
     def __init__(self, root):
@@ -99,18 +102,21 @@ class GUI:
         self.slika_path = None
         if self.slika_path is not None:
              self.prikazi_sliku(self.slika_path)
-        # Kreiranje label za prikaz slike na levoj strani
+        
         self.label = tk.Label(self.root)
         self.label.pack(side="left")
 
-        # Kreiranje gumba za dodavanje slike
+        
         dodaj_sliku_button = tk.Button(self.root, text="Dodaj sliku", command=self.dodaj_sliku)
         dodaj_sliku_button.pack()
 
-        # Kreiranje gumba za promenu kontrasta
-
+    
+    
         promeni_kontrast_button = tk.Button(self.root, text="Promeni kontrast", command=self.menjanje_kontrasta)
         promeni_osvetljenje_button = tk.Button(self.root, text="Promeni osvetljenje", command=self.menjanje_osvetljenja)
+        sacuvaj_promene_button=tk.Button(self.root, text="Sacuvaj sliku", command=self.cuvanje_slike)
+        
+        sacuvaj_promene_button.pack()
         promeni_osvetljenje_button.pack()
         promeni_kontrast_button.pack()
 
@@ -132,7 +138,7 @@ class GUI:
                 nova_visina = max_visina
                 nova_sirina = int(max_visina * aspect_ratio)
         
-        else: #ako slika nije vodoravna
+        else: 
             if visina > max_sirina or sirina > max_visina:
                 aspect_ratio = visina / sirina
 
@@ -156,6 +162,7 @@ class GUI:
         
         
         img = Image.open(slika_path)
+        self.img_velika=img
         sirina, visina = img.size 
         if sirina > visina: #ako slika vodoravna
             if sirina > max_sirina or visina > max_visina:
@@ -188,11 +195,6 @@ class GUI:
         if slika_path:
             self.prikazi(slika_path)
             
-    # def promeni_kontrast(self,pathSlike):
-    #     img=Image.open(pathSlike)
-    #     img
-
-    #     self.label.img1 = img_tk
     
     def menjanje_kontrasta(self):
     
@@ -205,7 +207,6 @@ class GUI:
                 self.label.self.img1 = img_tk
                 self.label.image = img_tk  # Dodajte ovu liniju kako biste sprečili gubljenje reference na sliku
                 
-
     def promeni_kontrast(self, vrednost):
         if self.slika_path:
             # img = Image.open(self.slika_path)
@@ -217,7 +218,7 @@ class GUI:
             img_tk = ImageTk.PhotoImage(self.img12)
             self.label.config(image=img_tk)
             self.label.img1 = img_tk
-
+    
     def menjanje_osvetljenja(self):
         if self.slika_path:
             if self.skala_za_osvetljenje is None:
@@ -239,6 +240,11 @@ class GUI:
         self.slika_path = filedialog.askopenfilename(filetypes=[("Slike", "*.jpg")])
         if self.slika_path:
             self.prikazi_sliku(self.slika_path)
+    def cuvanje_slike(self):
+        # images_preview.append(self.img12)
+        # images.append(self.img)
+        self.img1=self.img12
+        
 
 
 if __name__ == "__main__":
