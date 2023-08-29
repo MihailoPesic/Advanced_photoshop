@@ -114,7 +114,7 @@ class GUI:
     
         promeni_kontrast_button = tk.Button(self.root, text="Promeni kontrast", command=self.menjanje_kontrasta)
         promeni_osvetljenje_button = tk.Button(self.root, text="Promeni osvetljenje", command=self.menjanje_osvetljenja)
-        sacuvaj_promene_button=tk.Button(self.root, text="Sacuvaj sliku", command=self.cuvanje_slike)
+        sacuvaj_promene_button=tk.Button(self.root, text="Sacuvaj promene", command=self.cuvanje_slike)
         
         sacuvaj_promene_button.pack()
         promeni_osvetljenje_button.pack()

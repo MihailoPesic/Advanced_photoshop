@@ -6,8 +6,8 @@ from PIL import Image, ImageTk, ImageEnhance
 # def promeni_kontrast(slika, vrednost):
     # ImageEnhance.Contrast(slika).enchance(vrednost)
 
-def promeni_osvetljenje(slika, vrednost):
-    ImageEnhance.Brightness(slika).enhance(vrednost)
+# def promeni_osvetljenje(slika, vrednost):
+#     ImageEnhance.Brightness(slika).enhance(vrednost)
 
 def promeni_boju(slika, vrednost):
     ImageEnhance.Color(slika).enhance(vrednost)
