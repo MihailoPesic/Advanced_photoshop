@@ -90,8 +90,10 @@ images=[]
 class GUI:
     
     def __init__(self, root):
+        self.skala_za_ostrinu = None
         self.skala_za_kontrast = None
         self.skala_za_osvetljenje=None
+        self.skala_za_boju=None
         self.img12=None
         self.slika_path=None
         self.root = root
@@ -103,23 +105,31 @@ class GUI:
         if self.slika_path is not None:
              self.prikazi_sliku(self.slika_path)
         
-        self.label = tk.Label(self.root)
-        self.label.pack(side="left")
+        left_frame = tk.Frame(self.root, bg="#c7ecee")
+        right_frame = tk.Frame(self.root, bg="#576574",padx=100)  
+        left_frame.pack(side="left", padx=20, pady=20)
+        right_frame.pack(side="right", fill="y", padx=20, pady=20)
+        self.label = tk.Label(left_frame)
+        self.label.pack(anchor="nw")
+        
+        #self.label = tk.Label(self.root)
+        #self.label.pack(side="left")
 
         
         dodaj_sliku_button = tk.Button(self.root, text="Dodaj sliku", command=self.dodaj_sliku)
-        dodaj_sliku_button.pack()
+        dodaj_sliku_button.pack(fill="y", padx=10, pady=10, anchor="nw")
 
-    
-    
-        promeni_kontrast_button = tk.Button(self.root, text="Promeni kontrast", command=self.menjanje_kontrasta)
+        promeni_ostrinu_button = tk.Button(self.root, text="Promeni ostrinu", command=self.menjanje_ostrine)
+        promeni_boju_button = tk.Button(self.root, text="Promeni boju", command=self.menjanje_boje)
+        promeni_kontrast_button = tk.Button(right_frame, text="Promeni kontrast", command=self.menjanje_kontrasta, anchor="w")
         promeni_osvetljenje_button = tk.Button(self.root, text="Promeni osvetljenje", command=self.menjanje_osvetljenja)
         sacuvaj_promene_button=tk.Button(self.root, text="Sacuvaj promene", command=self.cuvanje_slike)
         
         sacuvaj_promene_button.pack()
         promeni_osvetljenje_button.pack()
-        promeni_kontrast_button.pack()
-
+        promeni_kontrast_button.pack(fill="x", padx=10, pady=10)
+        promeni_boju_button.pack()
+        promeni_ostrinu_button.pack()
     def prikazi_sliku(self, pathSlike):
         max_sirina = 500
         max_visina = 500
@@ -194,8 +204,32 @@ class GUI:
         slika_path = filedialog.askopenfilename(filetypes=[("Slike", "*.jpg")])
         if slika_path:
             self.prikazi(slika_path)
-            
-    
+    def menjanje_ostrine(self):
+        if self.slika_path:
+            if self.skala_za_ostrinu is None:
+                self.skala_za_ostrinu = Scale(self.root, from_=0, to=100, orient=HORIZONTAL, command=self.promeni_ostrinu)
+                self.skala_za_ostrinu.pack()
+                img_tk = ImageTk.PhotoImage(self.img1)
+                self.label.config(image=img_tk)
+                self.label.self.img1 = img_tk
+                self.label.image = img_tk
+    def promeni_ostrinu(self, vrednost):
+        if self.slika_path:
+            ostrina = float(vrednost) / 50.0  
+            enhancer = ImageEnhance.Sharpness(self.img1)
+            self.img12 = enhancer.enhance(ostrina)
+            img_tk = ImageTk.PhotoImage(self.img12)
+            self.label.config(image=img_tk)
+            self.label.img1 = img_tk        
+    def menjanje_boje(self):
+        if self.slika_path:
+            if self.skala_za_boju is None:
+                self.skala_za_boju = Scale(self.root, from_=0, to=100, orient=HORIZONTAL, command=self.promeni_boju)
+                self.skala_za_boju.pack()
+                img_tk = ImageTk.PhotoImage(self.img1)
+                self.label.config(image=img_tk)
+                self.label.img1 = img_tk
+                self.label.image = img_tk
     def menjanje_kontrasta(self):
     
         if self.slika_path:
@@ -206,7 +240,14 @@ class GUI:
                 self.label.config(image=img_tk)
                 self.label.self.img1 = img_tk
                 self.label.image = img_tk  # Dodajte ovu liniju kako biste sprečili gubljenje reference na sliku
-                
+    def promeni_boju(self, vrednost):
+        if self.slika_path:
+            boja = float(vrednost) / 50.0  
+            enhancer = ImageEnhance.Color(self.img1)
+            self.img12 = enhancer.enhance(boja)
+            img_tk = ImageTk.PhotoImage(self.img12)
+            self.label.config(image=img_tk)
+            self.label.img1 = img_tk            
     def promeni_kontrast(self, vrednost):
         if self.slika_path:
             # img = Image.open(self.slika_path)

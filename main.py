@@ -9,11 +9,11 @@ from PIL import Image, ImageTk, ImageEnhance
 # def promeni_osvetljenje(slika, vrednost):
 #     ImageEnhance.Brightness(slika).enhance(vrednost)
 
-def promeni_boju(slika, vrednost):
-    ImageEnhance.Color(slika).enhance(vrednost)
+# def promeni_boju(slika, vrednost):
+#     ImageEnhance.Color(slika).enhance(vrednost)
 
-def promeni_ostrinu(slika, vrednost):
-    ImageEnhance.Sharpness(slika).enhance(vrednost)
+# def promeni_ostrinu(slika, vrednost):
+#     ImageEnhance.Sharpness(slika).enhance(vrednost)
 
 def main():
     root = tk.Tk()
@@ -24,6 +24,8 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    
 
 
 
